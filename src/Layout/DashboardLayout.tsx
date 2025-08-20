@@ -1,0 +1,27 @@
+import { Outlet } from "react-router-dom";
+import Sidebar from "./Sidebar";
+import TopSection from "./TopSection";
+
+const DashboardLayout = () => {
+  return (
+    <div className=" flex">
+      <div>
+        <Sidebar />
+      </div>
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col  overflow-y-scroll h-screen ">
+        {/* TopSection */}
+        <div className="bg-white px-8 py-4">
+          <TopSection handleCustomizationClick={() => console.log("first")} />
+        </div>
+
+        {/* Content with scroll */}
+        <div className="custom-scrollbar flex-1  px-8 py-4">
+          <Outlet />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default DashboardLayout;

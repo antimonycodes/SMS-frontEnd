@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols+2&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+@import url("https://fonts.cdnfonts.com/css/segoe-script");
+@import "tailwindcss";
+
+@theme {
+  --color-primary-100: #dcfce7;
+  --color-primary: #3b82f6;
+  --color-brand-50: #eff6ff;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-900: #1e3a8a;
+
+  --color-accent-400: #f59e0b;
+  --color-accent-500: #d97706;
+
+  --color-success-400: #10b981;
+  --color-success-500: #059669;
+
+  --font-family-display: "Inter", "system-ui", sans-serif;
+
+  --breakpoint-xs: 475px;
+  --breakpoint-3xl: 1920px;
+
+  --animate-bounce-slow: bounce 3s infinite;
+  --animate-pulse-slow: pulse 4s infinite;
+  --animate-float: float 6s ease-in-out infinite;
+}
+@layer base {
+  body {
+    font-family: "Montserrat", cursive;
+    background: #f9fafb;
+  }
+}
+@layer components {
+  .card {
+    @apply bg-white rounded-lg shadow p-6;
+  }
+  .fcb {
+    @apply flex items-center justify-between;
+  }
+  .inp {
+    @apply px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500;
+  }
+}
+
+@layer utilities {
+  .bg-grid {
+    background-size: 30px 30px;
+    background-image:
+      linear-gradient(to right, #0066cc 1px, transparent 1px),
+      linear-gradient(to bottom, #0066cc 1px, transparent 1px);
+  }
+}
