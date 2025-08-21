@@ -1,12 +1,14 @@
 import { useEffect, type JSX } from "react";
 import { useRole } from "../lib/utils";
 import { useNavigate } from "react-router-dom";
-import AdminStudentPage from "../components/Admin/Student/AdminStudentPage";
+import TeacherAssignmentDetails from "../components/Teacher/Assignment/AssignmentDetails";
+import AssignmentSubmission from "../components/Student/Assignmnet/AssignmentSubmission";
 
 const roleComponents: Record<string, JSX.Element> = {
-  admin: <AdminStudentPage />,
+  teacher: <TeacherAssignmentDetails />,
+  student: <AssignmentSubmission />,
 };
-const Students = () => {
+const AssignmentDetails = () => {
   const navigate = useNavigate();
   const role = useRole();
   useEffect(() => {
@@ -18,4 +20,4 @@ const Students = () => {
   return role ? roleComponents[role] || null : null;
 };
 
-export default Students;
+export default AssignmentDetails;

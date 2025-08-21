@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { studentsList } from "../../data";
-import Table from "../ui/Table";
+import { studentsList } from "../../../data";
+import Table from "../../ui/Table";
 
 const StudentList = () => {
   const navigate = useNavigate();

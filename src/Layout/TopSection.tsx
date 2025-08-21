@@ -5,6 +5,7 @@
 // import { useEffect } from "react";
 import { Bell, Menu } from "lucide-react";
 import { useState } from "react";
+import { useRole } from "../lib/utils";
 
 // import CustomizationSetting from "./CustomizationSetting";
 const TopSection = ({}: { handleCustomizationClick: () => void }) => {
@@ -13,6 +14,7 @@ const TopSection = ({}: { handleCustomizationClick: () => void }) => {
 
   const [selectedTerm] = useState("2");
   const [selectedSession] = useState("2024/2025");
+  const role = useRole();
 
   // Get user's initials from first and last name
   // const getUserInitials = () => {
@@ -33,7 +35,7 @@ const TopSection = ({}: { handleCustomizationClick: () => void }) => {
           </button>
           <div className="lg:ml-0 ml-4">
             <h2 className="text-xl font-semibold text-gray-800">
-              Good Morning, Principal Adebisi
+              Good Morning, {role}
             </h2>
             <p className="text-sm text-gray-600">
               {selectedSession} Academic Session • Term {selectedTerm} •{" "}

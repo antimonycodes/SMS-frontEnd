@@ -1,6 +1,12 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
-import { ChevronDown, ChevronRight, LogOut, X } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronRight,
+  LogOut,
+  LucideGitlab,
+  X,
+} from "lucide-react";
 import { motion } from "framer-motion";
 // import { sidebarRoutes, SidebarRoute } from "../../config/sidebarRoutes";
 // import logo from "../../assets/logo-full.png";
@@ -276,10 +282,8 @@ const Sidebar = ({ isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps) => {
         className="fixed top-0 left-0 h-screen w-72 bg-white z-50 md:hidden overflow-y-scroll shadow-xl rounded-r-xl"
       >
         <div className="flex items-center justify-between p-5 border-b border-gray-100">
-          <img
-            // src={logo}
-            alt="Logo"
-            className="h-10 w-auto"
+          <LucideGitlab
+            className="h-10 w-auto text-brand-900"
             onClick={() => navigate("/")}
           />
           <div className="bg-gray-100 p-2 rounded-full cursor-pointer hover:bg-gray-200 transition-colors">
@@ -314,10 +318,8 @@ const Sidebar = ({ isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps) => {
         onMouseLeave={handleMouseLeave}
       >
         <div className="flex items-center justify-between p-6">
-          <img
-            // src={isCollapsed ? logoSmall : logo}
-            alt="Logo"
-            className="w-full h-auto cursor-pointer"
+          <LucideGitlab
+            className="h-10  w-10 text-brand-900"
             onClick={() => navigate("/")}
           />
         </div>

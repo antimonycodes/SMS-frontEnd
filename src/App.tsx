@@ -12,7 +12,7 @@ import Departments from "./pages/Departments";
 import Announcements from "./pages/Announcements";
 import Holidays from "./pages/Holidays";
 import Subject from "./pages/Subject";
-import StudentDetails from "./components/Student/StudentDetails";
+import StudentDetails from "./components/Admin/Student/StudentDetails";
 import Classes from "./pages/Classes";
 import Timetable from "./pages/Timetable";
 import Attendance from "./pages/Attendance";
@@ -21,6 +21,9 @@ import Promotion from "./pages/Promotion";
 import Fees from "./pages/Fees";
 import Preview from "./pages/Preview";
 import Settings from "./pages/Settings";
+import Assignments from "./pages/Assignments";
+import AssignmentDetails from "./pages/AssignmentDetails";
+import Grading from "./pages/Grading";
 
 function App() {
   // const { count, increment } = useStore();
@@ -58,6 +61,15 @@ function App() {
             <Route path="student/:id" element={<StudentDetails />} />
             <Route path="teacher" element={<Teachers />} />
             <Route path="classes" element={<Classes />} />
+            <Route path="assignment" element={<Assignments />} />
+            <Route
+              path="assignment/:id/submissions"
+              element={<AssignmentDetails />}
+            />{" "}
+            <Route
+              path="assignment/:id/submissions/grade/:id"
+              element={<Grading />}
+            />
             <Route path="timetable" element={<Timetable />} />
             <Route path="attendance" element={<Attendance />} />
             <Route path="grades" element={<Grades />} />

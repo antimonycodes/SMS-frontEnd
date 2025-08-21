@@ -1,8 +1,8 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
-import Modals from "../../shared/Modals";
-import PageHeader from "../../shared/PageHeader";
+import Modals from "../../../shared/Modals";
+import PageHeader from "../../../shared/PageHeader";
 import StudentList from "./StudentList";
-import Input from "../ui/Input";
+import Input from "../../ui/Input";
 
 const AdminStudentPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
