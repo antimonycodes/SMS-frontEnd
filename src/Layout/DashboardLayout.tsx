@@ -11,12 +11,12 @@ const DashboardLayout = () => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col  overflow-y-scroll h-screen ">
         {/* TopSection */}
-        <div className="bg-white px-8 py-4">
+        <div className="">
           <TopSection handleCustomizationClick={() => console.log("first")} />
         </div>
 
         {/* Content with scroll */}
-        <div className="custom-scrollbar flex-1  px-8 py-4">
+        <div className="custom-scrollbar flex-1  px-8 py-24">
           <Outlet />
         </div>
       </div>

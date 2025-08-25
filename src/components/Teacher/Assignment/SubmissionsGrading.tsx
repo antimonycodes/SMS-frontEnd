@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { useLocation, useParams } from "react-router-dom";
 import PageHeader from "../../../shared/PageHeader";
 import InfoCard from "../../ui/InfoCard";

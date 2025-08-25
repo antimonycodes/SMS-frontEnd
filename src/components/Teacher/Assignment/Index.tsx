@@ -7,6 +7,7 @@ const TeacherAssignmentPage = () => {
       <PageHeader
         title="Assignment Management"
         buttonText="Create New Assignment"
+        sub="Manage and track your assignments"
       />
       {/* Assignment List */}
       <MyAssignments />

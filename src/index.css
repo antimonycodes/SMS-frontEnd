@@ -28,6 +28,9 @@
   --animate-float: float 6s ease-in-out infinite;
 }
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     font-family: "Montserrat", cursive;
     background: #f9fafb;

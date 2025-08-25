@@ -1,10 +1,8 @@
 // src/config/sidebarRoutes.ts
 import {
   DollarSign,
-  BedDouble,
   Users2,
   LayoutDashboard,
-  SendToBack,
   BookOpenText,
   Megaphone,
   ReceiptSwissFranc,
@@ -21,7 +19,6 @@ import {
 } from "lucide-react";
 
 import type { ReactElement } from "react";
-import { getImageSrc } from "../lib/utils";
 
 export interface SidebarRoute {
   name: string;
@@ -103,7 +100,7 @@ export const sidebarRoutes: Record<string, SidebarRoute[]> = {
     },
     {
       name: "Blog",
-      path: "/dashboard/blog",
+      path: "/dashboard/blogs",
       icon: <Newspaper />,
       activeIcon: <Megaphone />,
     },
@@ -180,7 +177,7 @@ export const sidebarRoutes: Record<string, SidebarRoute[]> = {
     },
     {
       name: "Blog",
-      path: "/dashboard/blog",
+      path: "/dashboard/blogs",
       icon: <Newspaper />,
       activeIcon: <Megaphone />,
     },
@@ -203,7 +200,7 @@ export const sidebarRoutes: Record<string, SidebarRoute[]> = {
       name: "Overview",
       path: "/dashboard/overview",
       icon: <LayoutDashboard />,
-      activeIcon: getImageSrc("overviewicon-active.svg"),
+      activeIcon: <LayoutDashboard />,
     },
     {
       name: "Assignment",
@@ -244,7 +241,7 @@ export const sidebarRoutes: Record<string, SidebarRoute[]> = {
     },
     {
       name: "Blog",
-      path: "/dashboard/blog",
+      path: "/dashboard/blogs",
       icon: <Newspaper />,
       activeIcon: <Megaphone />,
     },

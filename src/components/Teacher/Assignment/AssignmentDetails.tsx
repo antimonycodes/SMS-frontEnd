@@ -31,7 +31,7 @@ const TeacherAssignmentDetails = () => {
             </tr>
           </thead>
           <tbody>
-            {lists.submissionList.map((student, index) => (
+            {lists.submissionList.map((student: any, index: any) => (
               <tr
                 key={index}
                 className="border-b border-[#EAECF0] hover:bg-gray-50"

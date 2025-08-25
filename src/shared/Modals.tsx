@@ -11,7 +11,7 @@ type ModalsProps = {
 const Modals = ({ title, onClose, children, onSubmit }: ModalsProps) => {
   return (
     <div
-      className=" fixed inset-0 bg-[#344054B2] bg-opacity-40 flex justify-center items-center h-full "
+      className=" fixed inset-0 bg-[#344054B2] bg-opacity-40 flex justify-center items-center h-full z-[9999999] "
       style={{ backdropFilter: "blur(7.06999969482422px)" }}
     >
       {/*  */}

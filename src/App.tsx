@@ -24,6 +24,12 @@ import Settings from "./pages/Settings";
 import Assignments from "./pages/Assignments";
 import AssignmentDetails from "./pages/AssignmentDetails";
 import Grading from "./pages/Grading";
+import Blog from "./pages/Blog";
+import BlogDetails from "./pages/BlogDetails";
+import CreateBlog from "./pages/CreateBlog";
+import SchoolLeadershipPage from "./pages/Leadership";
+import TeacherDetailsPage from "./pages/TeacherDetails";
+import ClassroomDetailPage from "./pages/ClassroomDetails";
 
 function App() {
   // const { count, increment } = useStore();
@@ -60,16 +66,23 @@ function App() {
             <Route path="student" element={<Students />} />
             <Route path="student/:id" element={<StudentDetails />} />
             <Route path="teacher" element={<Teachers />} />
+            <Route path="teacher/:id" element={<TeacherDetailsPage />} />
+
             <Route path="classes" element={<Classes />} />
+            <Route path="class/:id" element={<ClassroomDetailPage />} />
+
             <Route path="assignment" element={<Assignments />} />
             <Route
               path="assignment/:id/submissions"
               element={<AssignmentDetails />}
-            />{" "}
+            />
             <Route
               path="assignment/:id/submissions/grade/:id"
               element={<Grading />}
             />
+            <Route path="blogs" element={<Blog />} />
+            <Route path="blog/:id" element={<BlogDetails />} />
+            <Route path="blog/create" element={<CreateBlog />} />
             <Route path="timetable" element={<Timetable />} />
             <Route path="attendance" element={<Attendance />} />
             <Route path="grades" element={<Grades />} />
@@ -81,6 +94,7 @@ function App() {
             <Route path="subject" element={<Subject />} />
             <Route path="settings" element={<Settings />} />
             <Route path="preview" element={<Preview />} />
+            <Route path="leadership" element={<SchoolLeadershipPage />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
