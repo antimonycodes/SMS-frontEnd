@@ -6,7 +6,13 @@ const DashboardLayout = () => {
   return (
     <div className=" flex">
       <div>
-        <Sidebar />
+        <Sidebar
+          isMobileMenuOpen={false}
+          setIsMobileMenuOpen={function (isOpen: boolean): void {
+            throw new Error("Function not implemented.");
+            console.log(isOpen);
+          }}
+        />
       </div>
       {/* Main Content */}
       <div className="flex-1 flex flex-col  overflow-y-scroll h-screen ">

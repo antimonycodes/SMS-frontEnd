@@ -2,13 +2,10 @@ import { useState } from "react";
 import {
   User,
   BookOpen,
-  Users,
   GraduationCap,
   Calendar,
-  Clock,
   Phone,
   Mail,
-  MapPin,
   Award,
   ChevronLeft,
   Edit3,

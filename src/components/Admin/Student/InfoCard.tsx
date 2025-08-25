@@ -1,5 +1,4 @@
 import {
-  Award,
   Calendar,
   GraduationCap,
   Mail,
