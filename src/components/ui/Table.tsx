@@ -1,5 +1,5 @@
 // Updated Table.tsx - Add row click functionality
-import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import React from "react";
 import Loader from "./Loader";
 
@@ -38,7 +38,7 @@ const Table = <T extends Record<string, any>>({
   rowKey,
   pagination = false,
   paginationData,
-  emptyMessage,
+  // emptyMessage,
   radius = "rounded-b-lg",
   onPageChange,
   onRowClick,

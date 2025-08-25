@@ -47,7 +47,7 @@ const Fees = ({ fees }: any) => {
               </tr>
             </thead>
             <tbody>
-              {fees.paymentHistory.map((payment, index) => (
+              {fees.paymentHistory.map((payment: any, index: any) => (
                 <tr
                   key={index}
                   className="border-b border-[#EAECF0] hover:bg-gray-50"

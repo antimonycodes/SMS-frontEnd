@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 // import logo from "../../assets/logo-full.png";
 import { useRole } from "../lib/utils";
 import { sidebarRoutes, type SidebarRoute } from "../config/SidebarRoutes";
-// import { useAuthStore } from "../../store/_auth/useAuthStore";
+// import { useAuthStore } from "./../store/_auth/useAuthStore";
 
 interface SidebarProps {
   isMobileMenuOpen: boolean;
@@ -251,12 +251,12 @@ const Sidebar = ({ isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps) => {
     open: {
       x: 0,
       opacity: 1,
-      transition: { type: "spring", stiffness: 300, damping: 24 },
+      transition: { stiffness: 300, damping: 24 },
     },
     closed: {
       x: "-100%",
       opacity: 0,
-      transition: { type: "spring", stiffness: 300, damping: 24 },
+      transition: { stiffness: 300, damping: 24 },
     },
   };
 

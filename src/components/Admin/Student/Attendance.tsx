@@ -44,7 +44,7 @@ const attendances = ({ attendances }: any) => {
               </tr>
             </thead>
             <tbody>
-              {attendances.recentRecord.map((record, index) => (
+              {attendances.recentRecord.map((record: any, index: any) => (
                 <tr
                   key={index}
                   className="border-b border-[#EAECF0] hover:bg-gray-50"

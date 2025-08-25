@@ -7,8 +7,7 @@ import StudentTabs from "./StudentTabs";
 const StudentDetails = () => {
   const location = useLocation();
   const studentData = location.state.data;
-  const { achievements, attendance, grades, fees, behavior, parents } =
-    studentData;
+  const { achievements } = studentData;
   console.log(studentData);
   console.log(achievements);
   return (
