@@ -7,8 +7,7 @@ import Behaviour from "./Behaviour";
 
 const StudentTabs = ({ studentData }: any) => {
   const [activeTab, setActiveTab] = useState("academic");
-  const { achievements, attendance, grades, fees, behavior, parents } =
-    studentData;
+  const { attendance, grades, fees, behavior } = studentData;
   console.log(studentData);
 
   const tabs = [
