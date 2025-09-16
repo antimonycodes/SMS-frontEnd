@@ -26,3 +26,45 @@ export const useRole = (): string | null => {
   // return role || (localStorage.getItem("role") as string | null);
   return localStorage.getItem("role") as string | null;
 };
+
+// Custom hook for debouncing values
+import { useState, useEffect } from "react";
+
+export function useDebounce<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
+// Alternative version with loading state
+export function useDebounceWithLoading<T>(
+  value: T,
+  delay: number
+): [T, boolean] {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+  const [isDebouncing, setIsDebouncing] = useState(false);
+
+  useEffect(() => {
+    setIsDebouncing(true);
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+      setIsDebouncing(false);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return [debouncedValue, isDebouncing];
+}

@@ -10,7 +10,6 @@ const DashboardLayout = () => {
           isMobileMenuOpen={false}
           setIsMobileMenuOpen={function (isOpen: boolean): void {
             throw new Error("Function not implemented.");
-            console.log(isOpen);
           }}
         />
       </div>

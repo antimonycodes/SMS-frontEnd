@@ -3,11 +3,13 @@ import PageHeader from "../../../shared/PageHeader";
 import InfoCard from "./InfoCard";
 import StatsCards from "./StatsCards";
 import StudentTabs from "./StudentTabs";
+import { studentsList } from "../../../data";
 
 const StudentDetails = () => {
   const location = useLocation();
-  const studentData = location.state.data;
-  const { achievements } = studentData;
+  const studentData = studentsList[0];
+  // const { achievements } = studentData;
+  const achievements = studentData.achievements;
   console.log(studentData);
   console.log(achievements);
   return (

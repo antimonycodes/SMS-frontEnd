@@ -14,19 +14,23 @@ import {
   Settings,
 } from "lucide-react";
 import Button from "../components/ui/Button";
-
+import { useParams } from "react-router-dom";
+import ClassArmStudents from "../components/Admin/Classrooms Management/ClassArmStudents";
+import ClassArmStats from "../components/Admin/Classrooms Management/ClassArmStats";
+type Student = {
+  id: number;
+  name: string;
+  admissionNo: string;
+  gender: string;
+  age: number;
+  performance: string;
+  attendance: string;
+  position?: string;
+};
 const ClassroomDetailPage = () => {
   const [activeTab, setActiveTab] = useState("overview");
-  type Student = {
-    id: number;
-    name: string;
-    admissionNo: string;
-    gender: string;
-    age: number;
-    performance: string;
-    attendance: string;
-    position?: string;
-  };
+  const { id } = useParams();
+  console.log(id);
 
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
   const [showLeadershipModal, setShowLeadershipModal] = useState(false);
@@ -172,61 +176,9 @@ const ClassroomDetailPage = () => {
             Back to Classes
           </button>
         </div>
-
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-            <div>
-              <div className="flex items-center gap-3 mb-2">
-                <h1 className="text-3xl font-bold text-gray-900">
-                  {classData.name}
-                </h1>
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                  {classData.level}
-                </span>
-              </div>
-              <p className="text-gray-600 mb-4">
-                Academic Session: {classData.academicSession} - {classData.term}
-              </p>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="text-center p-3 bg-blue-50 rounded-lg">
-                  <div className="text-2xl font-bold text-blue-600">
-                    {classData.students}
-                  </div>
-                  <div className="text-sm text-gray-600">Students</div>
-                </div>
-                <div className="text-center p-3 bg-green-50 rounded-lg">
-                  <div className="text-2xl font-bold text-green-600">
-                    {classData.teachers}
-                  </div>
-                  <div className="text-sm text-gray-600">Teachers</div>
-                </div>
-                <div className="text-center p-3 bg-purple-50 rounded-lg">
-                  <div className="text-2xl font-bold text-purple-600">
-                    {classData.subjects.length}
-                  </div>
-                  <div className="text-sm text-gray-600">Subjects</div>
-                </div>
-                <div className="text-center p-3 bg-orange-50 rounded-lg">
-                  <div className="text-2xl font-bold text-orange-600">94%</div>
-                  <div className="text-sm text-gray-600">Attendance</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex gap-3">
-              <Button variant="outline" className="flex items-center gap-2">
-                <Settings className="h-4 w-4" />
-                Settings
-              </Button>
-              <Button className="flex items-center gap-2 bg-brand-500 hover:bg-brand-600">
-                <Edit3 className="h-4 w-4" />
-                Edit Class
-              </Button>
-            </div>
-          </div>
-        </div>
       </div>
+      {/* stats cards */}
+      {id && <ClassArmStats id={id} />}
 
       {/* Tab Navigation */}
       <div className="mb-6">
@@ -356,114 +308,7 @@ const ClassroomDetailPage = () => {
             </div>
           </div>
         )}
-
-        {activeTab === "students" && (
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-            <div className="p-6 border-b border-gray-200">
-              <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold text-gray-900">
-                  Student List
-                </h3>
-                <div className="flex items-center gap-3">
-                  <input
-                    type="text"
-                    placeholder="Search students..."
-                    className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
-                  />
-                  <Button size="sm" className="bg-brand-500 hover:bg-brand-600">
-                    Add Student
-                  </Button>
-                </div>
-              </div>
-            </div>
-
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Student
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Admission No.
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Gender
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Age
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Status
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Attendance
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Position
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {students.map((student) => (
-                    <tr key={student.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center">
-                          <div className="h-10 w-10 bg-brand-100 rounded-full flex items-center justify-center">
-                            <span className="text-sm font-medium text-brand-600">
-                              {student.name
-                                .split(" ")
-                                .map((n) => n[0])
-                                .join("")}
-                            </span>
-                          </div>
-                          <div className="ml-4">
-                            <div className="text-sm font-medium text-gray-900">
-                              {student.name}
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {student.admissionNo}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {student.gender}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {student.age}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                          Good Standing
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {student.attendance}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {student.position && (
-                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                            <Star className="h-3 w-3 mr-1" />
-                            {student.position}
-                          </span>
-                        )}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <Button variant="outline" size="sm">
-                          View Details
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
+        {activeTab === "students" && id && <ClassArmStudents id={id} />}
 
         {activeTab === "leadership" && (
           <div className="space-y-6">
@@ -762,35 +607,7 @@ const ClassroomDetailPage = () => {
           </div>
         )}
 
-        {activeTab === "activities" && (
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-6">
-              Class Activities & Events
-            </h3>
-
-            <div className="space-y-4">
-              {recentActivities.map((activity, index) => (
-                <div
-                  key={index}
-                  className="flex items-start gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50"
-                >
-                  <div className="w-10 h-10 bg-brand-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Calendar className="h-5 w-5 text-brand-600" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-900 mb-1">
-                      {activity.message}
-                    </p>
-                    <p className="text-xs text-gray-500">{activity.time}</p>
-                  </div>
-                  <Button variant="outline" size="sm">
-                    View Details
-                  </Button>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+        {activeTab === "activities" && <h1>hjk</h1>}
       </div>
     </div>
   );

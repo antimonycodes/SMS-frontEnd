@@ -60,11 +60,11 @@ const InfoCard = ({ studentData }: any) => {
       <div>
         <h3 className="text-lg font-semibold mb-4">Personal Information</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <InfoItem label="Date of Birth" value={studentData.dateOfBirth} />
-          <InfoItem label="Gender" value={studentData.gender} />
-          <InfoItem label="Blood Group" value={studentData.bloodGroup} />
-          <InfoItem label="Religion" value={studentData.religion} />
-          <InfoItem label="Student Type" value={studentData.studentType} />
+          <InfoItem label="Date of Birth" value={studentData?.dateOfBirth} />
+          <InfoItem label="Gender" value={studentData?.gender} />
+          <InfoItem label="Blood Group" value={studentData?.bloodGroup} />
+          <InfoItem label="Religion" value={studentData?.religion} />
+          <InfoItem label="Student Type" value={studentData?.studentType} />
         </div>
       </div>
 
@@ -72,14 +72,17 @@ const InfoCard = ({ studentData }: any) => {
       <div>
         <h3 className="text-lg font-semibold mb-4">Parent / Guardian</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <InfoItem label="Name" value={studentData.parent.name} />
+          <InfoItem label="Name" value={studentData?.parent?.name} />
           <InfoItem
             label="Relationship"
-            value={studentData.parent.relationship}
+            value={studentData?.parent?.relationship}
           />
-          <InfoItem label="Occupation" value={studentData.parent.occupation} />
-          <InfoItem label="Phone" value={studentData.parent.phone} />
-          <InfoItem label="Email" value={studentData.parent.email} />
+          <InfoItem
+            label="Occupation"
+            value={studentData?.parent?.occupation}
+          />
+          <InfoItem label="Phone" value={studentData?.parent?.phone} />
+          <InfoItem label="Email" value={studentData?.parent?.email} />
         </div>
       </div>
     </div>

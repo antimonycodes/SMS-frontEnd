@@ -21,7 +21,6 @@ const PageHeader = ({
 }: PageHeaderProps) => {
   const { id } = useParams();
   const navigate = useNavigate();
-  console.log(id);
 
   return (
     <div>

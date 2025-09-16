@@ -6,7 +6,8 @@ const ClassSubjects = ({ selectedLevel }: any) => {
     <div className=" card">
       <div>
         <h1 className=" font-semibold mb-4">
-          Subject Distribution for {classrooms[selectedLevel].category}
+          {/* Subject Distribution for {classrooms[selectedLevel].category} */}
+          To be Done
         </h1>
         {/*  */}
         <div>
@@ -21,7 +22,7 @@ const ClassSubjects = ({ selectedLevel }: any) => {
               </tr>
             </thead>
 
-            <tbody>
+            {/* <tbody>
               {classrooms[selectedLevel].subjectsData.map((c, index) => {
                 return (
                   <tr key={index}>
@@ -30,7 +31,7 @@ const ClassSubjects = ({ selectedLevel }: any) => {
                   </tr>
                 );
               })}
-            </tbody>
+            </tbody> */}
           </table>
         </div>
       </div>

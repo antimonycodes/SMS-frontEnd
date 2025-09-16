@@ -30,32 +30,26 @@ import CreateBlog from "./pages/CreateBlog";
 import SchoolLeadershipPage from "./pages/Leadership";
 import TeacherDetailsPage from "./pages/TeacherDetails";
 import ClassroomDetailPage from "./pages/ClassroomDetails";
+import { useAuth } from "./hooks/useAuth";
+import { Toaster } from "sonner";
 
 function App() {
-  // const { count, increment } = useStore();
-  // const [isClicked, setIsClicked] = useState(false);
-  // const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const { restoring } = useAuth(); // This handles all auth initialization
 
-  // useEffect(() => {
-  //   interface MouseEventWithClient extends MouseEvent {
-  //     clientX: number;
-  //     clientY: number;
-  //   }
-  //   const handleMouseMove = (e: MouseEventWithClient) => {
-  //     setMousePosition({ x: e.clientX, y: e.clientY });
-  //   };
-  //   window.addEventListener("mousemove", handleMouseMove);
-  //   return () => window.removeEventListener("mousemove", handleMouseMove);
-  // }, []);
-
-  // const handleIncrement = () => {
-  //   increment();
-  //   setIsClicked(true);
-  //   setTimeout(() => setIsClicked(false), 600);
-  // };
+  if (restoring) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600 font-medium">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
+      <Toaster position="top-center" richColors />
       <Routes>
         <Route path="/" element={<Navigate to="/dashboard" />} />
         <Route path="/signin" element={<SignIn />}></Route>

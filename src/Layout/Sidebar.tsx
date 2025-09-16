@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 // import logo from "../../assets/logo-full.png";
 import { useRole } from "../lib/utils";
 import { sidebarRoutes, type SidebarRoute } from "../config/SidebarRoutes";
+import { useLogin, useLogout } from "../hooks/queryOptions";
 // import { useAuthStore } from "./../store/_auth/useAuthStore";
 
 interface SidebarProps {
@@ -30,7 +31,6 @@ const Sidebar = ({ isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps) => {
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>(
     {}
   );
-  console.log(role);
 
   useEffect(() => {
     setMenuItems(role ? sidebarRoutes[role] : []);
@@ -77,9 +77,11 @@ const Sidebar = ({ isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps) => {
     return false;
   };
 
+  const logoutmutation = useLogout();
+
   const handleLogout = async () => {
-    // await logout();
-    navigate("/signin");
+    await logoutmutation.mutateAsync();
+    // navigate("/signin");
   };
 
   const renderIcon = (icon: string | React.ReactElement) => {
@@ -296,7 +298,7 @@ const Sidebar = ({ isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps) => {
         </div>
 
         <div className="py-4 px-3 space-y-1">
-          {menuItems.map(renderMobileMenuItem)}
+          {menuItems?.map(renderMobileMenuItem)}
         </div>
 
         <div className=" bottom-0 left-0 right-0 border-t border-gray-100 p-4">
@@ -323,7 +325,7 @@ const Sidebar = ({ isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps) => {
             onClick={() => navigate("/")}
           />
         </div>
-        <div className="p-2 space-y-1">{menuItems.map(renderMenuItem)}</div>
+        <div className="p-2 space-y-1">{menuItems?.map(renderMenuItem)}</div>
 
         <div className=" bottom-0 left-0 right-0 border-t border-gray-100 p-2">
           <button

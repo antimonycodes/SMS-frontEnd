@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLogin } from "../hooks/queryOptions";
+import { useAuthStore } from "../store/auth";
+import { Loader2 } from "lucide-react";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -7,38 +10,37 @@ const SignIn = () => {
     password: "",
     role: "",
   });
-  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
+  const loginMutation = useLogin();
+  const { isAuthenticated, restoring } = useAuthStore();
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (!restoring && isAuthenticated) {
+      navigate("/dashboard", { replace: true });
+    }
+  }, [isAuthenticated, restoring, navigate]);
+
+  if (restoring) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600 font-medium">Checking session...</p>
+        </div>
+      </div>
+    );
+  }
 
   const handleFormInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLoading(true);
-
-    // Simulate API call
-    // setTimeout(() => {
-    console.log("Sign in data:", formData);
-    // Store role in memory (localStorage not supported in artifacts)
-    localStorage.setItem("role", formData.role);
-    localStorage.setItem("token", "tokennn");
-    setIsLoading(false);
-
-    // Navigate to dashboard
-    navigate("/dashboard");
-    // }, 1500);
+    loginMutation.mutate(formData);
   };
-
-  const roles = [
-    { value: "", label: "Select your role" },
-    { value: "student", label: "Student" },
-    { value: "teacher", label: "Teacher" },
-    { value: "admin", label: "Administrator" },
-    { value: "parent", label: "Parent/Guardian" },
-  ];
 
   return (
     <div
@@ -219,64 +221,6 @@ const SignIn = () => {
                 </div>
               </div>
 
-              {/* Role Select */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Role
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <svg
-                      className="h-5 w-5 text-gray-400"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                      />
-                    </svg>
-                  </div>
-                  <select
-                    name="role"
-                    value={formData.role}
-                    onChange={(e) =>
-                      setFormData({ ...formData, role: e.target.value })
-                    }
-                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 appearance-none bg-white/80 backdrop-blur-sm"
-                    required
-                  >
-                    {roles.map((role) => (
-                      <option
-                        key={role.value}
-                        value={role.value}
-                        disabled={role.value === ""}
-                      >
-                        {role.label}
-                      </option>
-                    ))}
-                  </select>
-                  <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                    <svg
-                      className="h-5 w-5 text-gray-400"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
               {/* Remember Me & Forgot Password */}
               <div className="flex items-center justify-between text-sm">
                 <label className="flex items-center">
@@ -297,31 +241,13 @@ const SignIn = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                disabled={isLoading}
-                className="w-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white py-3 px-4 rounded-xl font-medium hover:from-indigo-700 hover:via-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-105"
+                disabled={loginMutation.isPending}
+                className="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
               >
-                {isLoading ? (
+                {loginMutation.isPending ? (
                   <>
-                    <svg
-                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      ></circle>
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      ></path>
-                    </svg>
-                    Signing In...
+                    <Loader2 className="animate-spin mr-2 h-4 w-4" />
+                    {/* Signing In... */}
                   </>
                 ) : (
                   "Sign In"

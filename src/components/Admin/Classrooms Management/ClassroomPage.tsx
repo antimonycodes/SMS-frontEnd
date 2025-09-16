@@ -2,11 +2,13 @@ import { useState } from "react";
 import PageHeader from "../../../shared/PageHeader";
 import ClassroomList from "./ClassroomList";
 import ClassSubjects from "./ClassSubjects";
+import AddClassArmModal from "./AddClassArmModal";
 // import ClassroomList from "./ClassroomList";
 
 const ClassroomPage = () => {
-  const [_, setModalOpen] = useState(false);
   const [selectedLevel, setSelectedLevel] = useState(0);
+
+  const [openModal, setModalOpen] = useState(false);
 
   // const [formData, setFormData] = useState({
   //   firstName: "",
@@ -34,6 +36,13 @@ const ClassroomPage = () => {
         selectedLevel={selectedLevel}
         setSelectedLevel={setSelectedLevel}
       />
+
+      {openModal && (
+        <AddClassArmModal
+          isOpen={openModal}
+          onClose={() => setModalOpen(false)}
+        />
+      )}
     </div>
   );
 };

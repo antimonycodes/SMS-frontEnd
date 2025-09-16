@@ -16,6 +16,7 @@ import {
   UserCog,
   Newspaper,
   BookAlert,
+  TrendingUpDownIcon,
 } from "lucide-react";
 
 import type { ReactElement } from "react";
@@ -109,6 +110,12 @@ export const sidebarRoutes: Record<string, SidebarRoute[]> = {
       path: "/dashboard/holiday",
       icon: <ReceiptSwissFranc />,
       activeIcon: <ReceiptSwissFranc />,
+    },
+    {
+      name: "Leadership",
+      path: "/dashboard/leadership",
+      icon: <TrendingUpDownIcon />,
+      activeIcon: <TrendingUpDownIcon />,
     },
 
     {
