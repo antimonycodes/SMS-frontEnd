@@ -11,6 +11,7 @@ import {
   deleteLeadershipRole,
   getLeadershipStats,
   getStudentLeadership,
+  assignBulkLeadershipRoles,
 } from "../api/leadership";
 import { toast } from "sonner";
 
@@ -23,7 +24,7 @@ export const getLeadershipRolesQuery = () =>
 export const createLeadershipRoleQuery = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: createLeadershipRole,
+    mutationFn: assignBulkLeadershipRoles,
     onSuccess: (data) => {
       toast.success(data.message);
       queryClient.invalidateQueries({ queryKey: ["leadershipRoles"] });

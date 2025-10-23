@@ -32,6 +32,7 @@ import TeacherDetailsPage from "./pages/TeacherDetails";
 import ClassroomDetailPage from "./pages/ClassroomDetails";
 import { useAuth } from "./hooks/useAuth";
 import { Toaster } from "sonner";
+import BulkAssign from "./components/Admin/Leadership/BulkAssign";
 
 function App() {
   const { restoring } = useAuth(); // This handles all auth initialization
@@ -89,6 +90,7 @@ function App() {
             <Route path="settings" element={<Settings />} />
             <Route path="preview" element={<Preview />} />
             <Route path="leadership" element={<SchoolLeadershipPage />} />
+            <Route path="leadership/assign" element={<BulkAssign />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFound />} />

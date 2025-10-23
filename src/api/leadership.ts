@@ -45,3 +45,49 @@ export const getStudentLeadership = async (): Promise<any[]> => {
   console.log(response.data.data.studentLeadershipRoles, "ertyui");
   return response.data.data.studentLeadershipRoles;
 };
+
+// Updated API function to support both single and bulk assignments
+export const assignStudentLeadershipRole = async (
+  payload:
+    | { student_id: number; role_id: number; class_arm_id: number }
+    | { student_id: number; role_id: number; class_arm_id: number }[]
+) => {
+  const res = await api.post("/admin/leadership/student/assign", payload);
+  return res.data;
+};
+
+// Alternative: Separate functions for clarity
+export const assignSingleLeadershipRole = async (payload: {
+  student_id: number;
+  role_id: number;
+  class_arm_id: number;
+}) => {
+  const res = await api.post("/admin/leadership/student/assign", payload);
+  return res.data;
+};
+
+export const assignBulkLeadershipRoles = async (
+  payload: {
+    student_id: number;
+    role_id: number;
+    class_arm_id: number;
+  }[]
+) => {
+  const res = await api.post("/admin/leadership/student/assign", payload);
+  return res.data;
+};
+
+// Helper function to get current assignments for validation
+export const getCurrentLeadershipAssignments = async () => {
+  const res = await api.get("/admin/leadership/assignments/current");
+  return res.data;
+};
+
+// Helper function to get student and role names
+export const getStudentAndRoleNames = async (payload: {
+  student_ids: number[];
+  role_ids: number[];
+}) => {
+  const res = await api.post("/admin/leadership/names", payload);
+  return res.data;
+};

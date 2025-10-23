@@ -82,7 +82,7 @@ const Modal: React.FC<ModalProps> = ({
             ref={modalRef}
             tabIndex={-1}
             className={clsx(
-              "bg-white rounded-lg shadow-xl w-full relative flex flex-col outline-none",
+              "bg-white rounded-lg shadow-xl w-full relative flex flex-col outline-none max-h-[90vh]",
               sizeClasses[size],
               className
             )}
